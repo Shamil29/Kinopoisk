@@ -1,0 +1,12 @@
+{
+    "base_url_ui": "https://www.kinopoisk.ru",
+    "base_url_api": "https://api.kinopoisk.dev/v1.4",
+    "token_info": "<УКАЗАТЬ СВОЙ ТОКЕН>",
+    "username": "<УКАЗАТЬ СВОЙ ЛОГИН>",
+    "password": "<УКАЗАТЬ СВОЙ ПАРОЛЬ>",
+    "film_title_for_positive": ["Титаник", "Taxi"],
+    "film_title_for_negative": ["оаоааара", "\uD83D\uDE00"],
+    "name_to_search_for_positive": ["Дмитрий Нагиев", "Tom Hardy"],
+    "name_to_search_for_negative": ["Кристинасмус", "\uD83D\uDE00"],
+    "id_film_tv_series": [3442]
+}

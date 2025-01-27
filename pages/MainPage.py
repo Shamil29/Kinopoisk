@@ -1,4 +1,3 @@
-import pytest
 import allure
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -8,14 +7,20 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class MainPage:
 
-    def __init__(self, driver:webdriver):
-        self.__url = "https://www.kinopoisk.ru/"
+    def __init__(self, driver: webdriver):
         self.__driver = driver
+
+    def title_on_the_main_page(self):
+        title_element = WebDriverWait(self.__driver, 10).until(
+            EC.presence_of_element_located((
+                By.CSS_SELECTOR, "head > title")))
+        return title_element.get_attribute("textContent")
 
     @allure.step("Нажатие на кнопку 'Войти' на главной странице")
     def login_button(self):
         WebDriverWait(self.__driver, 10).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, ".styles_loginButton__LWZQp"))).click()
+            EC.element_to_be_clickable((
+                By.CSS_SELECTOR, ".styles_loginButton__LWZQp"))).click()
 
     @allure.step("Получить текущий URL")
     def get_current_url_auth(self):
@@ -32,13 +37,15 @@ class MainPage:
     @allure.step("Получить текст элементов в подсказках к поисковому полю.")
     def get_search_field_list(self):
         hints = WebDriverWait(self.__driver, 10).until(
-            EC.visibility_of_any_elements_located((By.CSS_SELECTOR, '.styles_groupsContainer__Uw6bW')))
+            EC.visibility_of_any_elements_located((
+                By.CSS_SELECTOR, '.styles_groupsContainer__Uw6bW')))
         return [hint.text for hint in hints]
 
     @allure.step("Нажатие на значок 'Поиска'")
     def search_icon(self):
         WebDriverWait(self.__driver, 10).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, '.search-form-submit-button__icon'))).click()
+            EC.element_to_be_clickable((
+                By.CSS_SELECTOR, '.search-form-submit-button__icon'))).click()
 
     @allure.step("Поиска фильма/сериала/персоны по названию")
     def search_film_tv_series_person(self):
